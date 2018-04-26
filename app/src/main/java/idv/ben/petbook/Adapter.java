@@ -19,7 +19,7 @@ import java.util.List;
 class Adapter extends RecyclerView.Adapter <Adapter.MyViewHolder> {
 
     private Context context;
-    private List<Bread> breadList;
+    private List<Activity> activityList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
@@ -35,9 +35,9 @@ class Adapter extends RecyclerView.Adapter <Adapter.MyViewHolder> {
             tvPlace = itemView.findViewById(R.id.tvPlace);
         }
     }
-    public Adapter(Context context,List<Bread> breadList){
+    public Adapter(Context context,List<Activity> activityList){
         this.context = context;
-        this.breadList = breadList;
+        this.activityList = activityList;
     }
    // @Override
     public Adapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -48,23 +48,23 @@ class Adapter extends RecyclerView.Adapter <Adapter.MyViewHolder> {
 
   //  @Override
     public void onBindViewHolder(final Adapter.MyViewHolder holder,int pos){
-        final Bread bread = breadList.get(pos);
-        holder.tvName.setText(bread.getName());
-        holder.tvTime.setText(String.valueOf(bread.getTime()));
-        holder.imvBread.setImageResource(bread.getImgID());
-        holder.tvPlace.setText(bread.getPlace());
+        final Activity Activity = activityList.get(pos);
+        holder.tvName.setText(Activity.getName());
+        holder.tvTime.setText(String.valueOf(Activity.getActivity_date()));
+        holder.imvBread.setImageResource(Activity.getImgID());
+        holder.tvPlace.setText(Activity.getLocation_address());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = bread.getName().toString();
-                String price = String.valueOf(bread.getTime());
-                String place = bread.getPlace().toString();
-                int picture = bread.getImgID();
+                String name = Activity.getName().toString();
+                String time = String.valueOf(Activity.getActivity_date());
+                String place = Activity.getLocation_address().toString();
+                int picture = Activity.getImgID();
                 Bundle bundle = new Bundle();
                 bundle.putInt("picture",picture);
                 bundle.putString("name",name);
-                bundle.putString("price",price);
+                bundle.putString("time",time);
                 bundle.putString("place",place);
 
                 AppCompatActivity activity =(AppCompatActivity) holder.itemView.getContext();
@@ -78,7 +78,7 @@ class Adapter extends RecyclerView.Adapter <Adapter.MyViewHolder> {
 
    // @Override
     public int getItemCount(){
-        return breadList.size();
+        return activityList.size();
     }
 
 }
