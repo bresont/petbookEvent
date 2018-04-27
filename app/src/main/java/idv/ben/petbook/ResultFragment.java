@@ -22,7 +22,8 @@ public class ResultFragment extends Fragment {
             int picture = bundle.getInt("picture");
             String name = bundle.getString("name");
             String time = bundle.getString("time");
-            String text = "name: " + name + "\ntime:" + time;
+            String place = bundle.getString("place");
+            String text = "name: " + name + "\ntime:" + time + "\nplace:" + place ;
             imageView.setImageResource(picture);
             tvResult.setText(text);
         }
